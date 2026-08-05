@@ -28,40 +28,57 @@ const moveToHome = () => {
           <article>
             <span>⚡</span>
             <h3>Composition API</h3>
-            <p>ref, computed, watch, onMounted를 활용한 반응형 상태 관리</p>
+            <p>ref, computed, watch, watchEffect, onMounted를 활용한 반응형 개발</p>
           </article>
 
           <article>
             <span>🧩</span>
             <h3>Component</h3>
-            <p>props, emits, slot을 이용한 재사용 가능한 컴포넌트 구성</p>
+            <p>Props, Emits, Slot을 이용한 재사용 가능한 컴포넌트 설계</p>
           </article>
 
           <article>
             <span>🧭</span>
             <h3>Vue Router</h3>
-            <p>동적 경로와 지연 로딩을 활용한 페이지 이동</p>
+            <p>동적 라우팅과 페이지 기반 화면 이동 구현</p>
           </article>
 
           <article>
             <span>🗂️</span>
-            <h3>Pinia Store</h3>
-            <p>온도 단위와 날씨 데이터를 전역 상태로 관리</p>
+            <h3>Pinia</h3>
+            <p>전역 상태 관리와 전국 날씨 데이터를 효율적으로 관리</p>
           </article>
 
           <article>
             <span>🔗</span>
             <h3>Axios</h3>
-            <p>OpenWeather API와 연동하여 실시간 데이터 조회</p>
+            <p>OpenWeather API와 통신하여 실시간 날씨 및 예보 조회</p>
           </article>
 
-          <!-- <article>
-            <span>🎨</span>
-            <h3>Blue Point UI</h3>
-            <p>파란색 포인트를 활용한 대시보드 디자인</p>
-          </article> -->
-        </div>
+          <article>
+            <span>🗺️</span>
+            <h3>Leaflet Map</h3>
+            <p>전국 지역을 지도에서 확인하고 날씨 정보를 시각화</p>
+          </article>
 
+          <article>
+            <span>📈</span>
+            <h3>Chart.js</h3>
+            <p>판교 5일 예보의 기온 변화를 차트로 시각화</p>
+          </article>
+
+          <article>
+            <span>🌤️</span>
+            <h3>SunCalc</h3>
+            <p>태양 위치를 계산하여 판교역 예상 그늘을 시뮬레이션</p>
+          </article>
+
+          <article>
+            <span>🎨</span>
+            <h3>Element Plus</h3>
+            <p>Button, Alert, Skeleton 등 UI 컴포넌트를 활용</p>
+          </article>
+        </div>
         <el-button type="primary" size="large" class="about-home-button" @click="moveToHome">
           날씨 대시보드로 이동
         </el-button>
