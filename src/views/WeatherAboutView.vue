@@ -55,11 +55,11 @@ const moveToHome = () => {
             <p>OpenWeather API와 연동하여 실시간 데이터 조회</p>
           </article>
 
-          <article>
+          <!-- <article>
             <span>🎨</span>
             <h3>Blue Point UI</h3>
             <p>파란색 포인트를 활용한 대시보드 디자인</p>
-          </article>
+          </article> -->
         </div>
 
         <el-button type="primary" size="large" class="about-home-button" @click="moveToHome">

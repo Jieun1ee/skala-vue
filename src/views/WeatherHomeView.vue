@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router'
 import BaseDashboardCard from '@/components/exercise/BaseDashboardCard.vue'
 import SearchBar from '@/components/exercise/SearchBar.vue'
 import WeatherCard from '@/components/exercise/WeatherCard.vue'
+import WeatherMap from '@/components/exercise/WeatherMap.vue'
 import { useWeatherStore } from '@/stores/weatherStore'
 
 const router = useRouter()
@@ -16,6 +17,7 @@ const { weatherList, isLoading, errorMessage, lastUpdatedAt } = storeToRefs(weat
 
 const searchQuery = ref('')
 const selectedCityInfo = ref(null)
+const viewMode = ref('card')
 
 const filteredWeatherList = computed(() => {
   const keyword = searchQuery.value.trim()
@@ -47,6 +49,10 @@ const updateSearchQuery = (newQuery) => {
 
 const selectCity = (weather) => {
   selectedCityInfo.value = weather
+}
+
+const changeViewMode = (mode) => {
+  viewMode.value = mode
 }
 
 const moveToDetail = (weather) => {
@@ -171,28 +177,46 @@ onMounted(async () => {
 
       <BaseDashboardCard
         title="지역별 날씨 현황"
-        description="지역 카드를 선택하거나 상세 정보를 확인하세요."
+        description="카드 또는 지도로 전국 날씨를 확인하세요."
       >
         <template #header-action>
-          <div class="weather-update-area">
-            <span>
-              최종 업데이트
+          <div class="weather-header-actions">
+            <el-button-group>
+              <el-button
+                :type="viewMode === 'card' ? 'primary' : 'default'"
+                @click="changeViewMode('card')"
+              >
+                ▦ 카드
+              </el-button>
 
-              <strong>
-                {{ formattedUpdatedAt }}
-              </strong>
-            </span>
+              <el-button
+                :type="viewMode === 'map' ? 'primary' : 'default'"
+                @click="changeViewMode('map')"
+              >
+                🗺 지도
+              </el-button>
+            </el-button-group>
 
-            <el-button type="primary" plain :loading="isLoading" @click="refreshWeather">
-              새로고침
-            </el-button>
+            <div class="weather-update-area">
+              <span>
+                최종 업데이트
+
+                <strong>
+                  {{ formattedUpdatedAt }}
+                </strong>
+              </span>
+
+              <el-button type="primary" plain :loading="isLoading" @click="refreshWeather">
+                새로고침
+              </el-button>
+            </div>
           </div>
         </template>
 
         <div v-if="isLoading && weatherList.length === 0" class="loading-container">
           <div class="loading-spinner"></div>
 
-          <strong> 전국 날씨를 불러오고 있습니다. </strong>
+          <strong>전국 날씨를 불러오고 있습니다.</strong>
 
           <p>잠시만 기다려 주세요.</p>
         </div>
@@ -210,17 +234,32 @@ onMounted(async () => {
         </div>
 
         <template v-else>
-          <div v-if="errorMessage" class="partial-error-message">
-            {{ errorMessage }}
-          </div>
+          <el-alert
+            v-if="errorMessage"
+            :title="errorMessage"
+            type="warning"
+            show-icon
+            :closable="false"
+            class="partial-error-message"
+          />
 
-          <div v-if="filteredWeatherList.length > 0" class="weather-grid">
-            <WeatherCard
-              v-for="weather in filteredWeatherList"
-              :key="weather.id"
-              :weather="weather"
-              :selected="selectedCityInfo?.id === weather.id"
-              @select-card="selectCity"
+          <div v-if="filteredWeatherList.length > 0">
+            <div v-if="viewMode === 'card'" class="weather-grid">
+              <WeatherCard
+                v-for="weather in filteredWeatherList"
+                :key="weather.id"
+                :weather="weather"
+                :selected="selectedCityInfo?.id === weather.id"
+                @select-card="selectCity"
+                @click-detail="moveToDetail"
+              />
+            </div>
+
+            <WeatherMap
+              v-else
+              :weather-list="filteredWeatherList"
+              :selected-weather-id="selectedCityInfo?.id || ''"
+              @select-weather="selectCity"
               @click-detail="moveToDetail"
             />
           </div>
@@ -242,10 +281,11 @@ onMounted(async () => {
           <strong>
             {{ selectedCityInfo.name }}
           </strong>
+
           지역이 선택되었습니다.
         </p>
 
-        <p v-else>카드를 클릭하거나 지역을 검색해 보세요.</p>
+        <p v-else>카드 또는 지도 마커를 선택해 보세요.</p>
       </div>
     </section>
   </main>
