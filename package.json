@@ -18,6 +18,7 @@
     "element-plus": "^2.14.3",
     "leaflet": "^1.9.4",
     "pinia": "^4.0.2",
+    "suncalc": "^2.0.1",
     "vue": "^3.5.40",
     "vue-chartjs": "^5.3.4",
     "vue-router": "^5.2.0"

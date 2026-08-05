@@ -9,6 +9,8 @@ import TemperatureChart from '@/components/forecast/TemperatureChart.vue'
 import { useConfigStore } from '@/stores/configStore'
 import { useForecastStore } from '@/stores/forecastStore'
 
+import PangyoShadeDemo from '@/components/forecast/PangyoShadeDemo.vue'
+
 const forecastStore = useForecastStore()
 const configStore = useConfigStore()
 
@@ -90,7 +92,10 @@ onMounted(async () => {
 
           <h2>판교 5일 날씨 예보</h2>
 
-          <p>판교역 인근 대표 좌표를 기준으로 3시간 간격의 기온과 날씨 변화를 제공합니다.</p>
+          <p>
+            판교역 인근 대표 좌표를 기준으로 햇빛을 피할 수 있는 그늘 위치와 3시간 간격의 기온과
+            날씨 변화를 제공합니다.
+          </p>
         </div>
 
         <div class="forecast-hero-icon">📈</div>
@@ -170,6 +175,13 @@ onMounted(async () => {
             </div>
           </article>
         </div>
+      </BaseDashboardCard>
+
+      <BaseDashboardCard
+        title="판교역 그늘 예측 실험"
+        description="시간에 따라 달라지는 예상 그늘 방향을 확인하세요."
+      >
+        <PangyoShadeDemo />
       </BaseDashboardCard>
 
       <BaseDashboardCard

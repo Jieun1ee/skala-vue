@@ -2368,3 +2368,279 @@ body {
     height: 460px;
   }
 }
+
+/* =========================================================
+   판교역 그늘 예측 데모
+========================================================= */
+
+.pangyo-shade-demo {
+  width: 100%;
+}
+
+.shade-demo-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.shade-demo-eyebrow {
+  margin: 0 0 4px;
+  color: var(--text-muted);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.shade-demo-header h3 {
+  margin: 0 0 5px;
+  color: var(--text-primary);
+  font-size: 17px;
+}
+
+.shade-demo-header p:last-child {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 11px;
+}
+.shade-control-grid {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(320px, 2fr) auto;
+  align-items: end;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 12px;
+  background-color: #f7f8f7;
+  border: 1px solid var(--border);
+  border-radius: 11px;
+}
+
+.shade-time-slider-area {
+  min-width: 0;
+}
+
+.shade-time-slider-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.shade-time-slider-header span {
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.shade-time-slider-header strong {
+  color: var(--text-primary);
+  font-size: 15px;
+}
+
+.shade-time-slider {
+  width: 100%;
+  margin: 0;
+  accent-color: #4b5563;
+  cursor: pointer;
+}
+
+.shade-time-scale {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+@media (max-width: 800px) {
+  .shade-control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shade-current-time-button {
+    width: 100%;
+  }
+}
+
+.shade-control-field {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.shade-control-field > span {
+  color: var(--text-secondary);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.shade-control-field input,
+.shade-control-field select {
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  padding: 0 10px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 12px;
+}
+
+.shade-control-field input:focus,
+.shade-control-field select:focus {
+  border-color: #68717a;
+  outline: 2px solid rgba(75, 85, 99, 0.12);
+}
+
+.shade-current-time-button {
+  min-height: 36px;
+}
+
+.shade-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 9px;
+  margin-bottom: 12px;
+}
+
+.shade-summary-grid article {
+  min-width: 0;
+  padding: 12px 13px;
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.shade-summary-grid span {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--text-muted);
+  font-size: 9px;
+}
+
+.shade-summary-grid strong {
+  display: block;
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: 15px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shade-alert {
+  margin-bottom: 12px;
+}
+
+.shade-map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px 16px;
+  margin-bottom: 9px;
+  color: var(--text-secondary);
+  font-size: 10px;
+}
+
+.shade-map-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.shade-map-legend i {
+  display: inline-block;
+  width: 11px;
+  height: 11px;
+  border-radius: 3px;
+}
+
+.shade-map-legend i.building {
+  background-color: #68717a;
+}
+
+.shade-map-legend i.shadow {
+  background-color: rgba(36, 41, 46, 0.55);
+}
+
+.shade-map-legend i.sunlight {
+  background-color: #d49a32;
+}
+
+.pangyo-shade-map {
+  z-index: 0;
+  width: 100%;
+  height: 500px;
+  min-height: 500px;
+  overflow: hidden;
+  background-color: #eceeeb;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+
+.pangyo-station-marker-wrapper {
+  background: transparent;
+  border: 0;
+}
+
+.pangyo-station-marker {
+  display: grid;
+  width: 58px;
+  height: 30px;
+  place-items: center;
+  background-color: #3f464d;
+  border: 2px solid #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(31, 41, 55, 0.25);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.shade-demo-notice {
+  padding: 10px 12px;
+  margin: 10px 0 0;
+  background-color: #faf8f2;
+  border: 1px solid #e9e1ce;
+  border-radius: 9px;
+  color: #756b57;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .shade-control-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .shade-current-time-button {
+    width: 100%;
+  }
+
+  .shade-summary-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .shade-demo-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .shade-control-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .shade-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pangyo-shade-map {
+    height: 430px;
+    min-height: 430px;
+  }
+}

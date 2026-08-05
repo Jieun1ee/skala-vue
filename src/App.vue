@@ -13,7 +13,7 @@ import UnitToggler from '@/components/exercise/UnitToggler.vue'
             <h1 class="brand-title">
               <span class="brand-icon"> 🌤️ </span>
 
-              Vue 날씨 대시보드
+              Vue 날씨 대시보드 - P299 이지은
             </h1>
           </div>
 
