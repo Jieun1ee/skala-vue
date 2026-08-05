@@ -7,6 +7,9 @@ const weatherApi = axios.create({
   timeout: 10000,
 })
 
+console.log('API Key 존재 여부:', Boolean(apiKey))
+console.log('API Base URL:', weatherApi.baseURL)
+
 const validateApiKey = () => {
   if (!apiKey) {
     throw new Error('OpenWeather API Key가 없습니다. .env 파일을 확인하세요.')
